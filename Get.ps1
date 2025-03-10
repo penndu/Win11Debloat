@@ -89,7 +89,7 @@ $arguments = $($PSBoundParameters.GetEnumerator() | ForEach-Object {
         "-$($_.Key)"
     } 
     else {
-        "-$($_.Key) $($_.Value)"
+         "-$($_.Key) ""$($_.Value)"""
     }
 })
 

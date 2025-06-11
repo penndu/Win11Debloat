@@ -1,0 +1,54 @@
+name: "Feature request"
+description: "Suggest a new feature or improvement"
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # **Feature request**
+        Thanks for taking the time to suggest a feature! Please include as much detail as possible in your request to help us understand and evaluate it.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched for existing issues/discussions and didn't find any similar ones.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem description
+      description: A clear and concise description of what the problem is.
+      placeholder: e.g. I'm always frustrated when [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: A clear and concise description of what you want to happen.
+      placeholder: e.g. I would like to see [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: A clear and concise description of any alternative solutions or features you've considered.
+      placeholder: e.g. I tried [...] but it didn't work because [...]
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request here.
+      placeholder: e.g. Screenshots, links to related discussions, etc.
+    validations:
+      required: false

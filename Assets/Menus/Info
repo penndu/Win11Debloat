@@ -13,12 +13,19 @@ Telemetry, Tracking & Suggested Content
 - Disable telemetry, diagnostic data, activity history, app-launch tracking & targeted ads.
 - Disable tips, tricks, suggestions & ads across Windows.
 - Disable the 'Windows Spotlight' desktop background option.
-- Disable & hide the recommended section in the start menu. (W11 only)
 
 Bing, Copilot & More
 - Disable & remove Bing web search, Bing AI and Cortana from Windows search.
 - Disable & remove Microsoft Copilot. (W11 only)
 - Disable Windows Recall snapshots. (W11 only)
+
+Personalisation
+- Enable dark mode for system and apps.
+- Disable transparency, animations and visual effects.
+- Turn off Enhance Pointer Precision, also known as mouse acceleration.
+- Disable the Sticky Keys keyboard shortcut. (W11 only)
+- Restore the old Windows 10 style context menu. (W11 only)
+- Hide the 'Include in library', 'Give access to' and 'Share' options from the context menu. (W10 only)
 
 File Explorer
 - Change the default location that File Explorer opens to.
@@ -36,17 +43,15 @@ Taskbar
 - Hide the chat (meet now) icon from the taskbar.
 - Enable the 'End Task' option in the taskbar right click menu. (W11 only)
 
-Context menu
-- Restore the old Windows 10 style context menu. (W11 only)
-- Hide the 'Include in library', 'Give access to' & 'Share' options from the context menu. (W10 only)
+Start
+- Disable & hide the recommended section in the start menu. (W11 only)
+- Disable the Phone Link mobile devices integration in the start menu. (W11 only)
 
 Other
 - Disable Xbox game/screen recording, this also stops gaming overlay popups.
-- Turn off Enhance Pointer Precision, also known as mouse acceleration.
 - Disable Fast Start-up to ensure a full shutdown.
-- Disable the Sticky Keys keyboard shortcut. (W11 only)
 - Option to apply changes to a different user, instead of the currently logged in user.
-- Sysprep mode to apply changes to the Windows Default user profile.
+- Sysprep mode to apply changes to the Windows Default user profile. 
 
 -------------------------------------------------------------------------------------------
  Default mode
@@ -57,10 +62,10 @@ The default mode applies the changes that are recommended for most users. This i
 - Disable tips, tricks, suggestions and ads in start, settings, notifications and more.
 - Disable tips & tricks on the lockscreen. (This may change your lockscreen wallpaper)
 - Disable & remove Bing web search, Bing AI and Cortana from Windows search.
-- Disable Microsoft Copilot. (Windows 11 build 22621+)
+- Disable & remove Microsoft Copilot. (W11 only)
 - Disable Fast Start-up to ensure a full shutdown.
 - Show file extensions for known file types.
-- Hide the 3D objects folder in Windows Explorer. (Windows 10 only)
+- Hide the 3D objects folder in Windows Explorer. (W10 only)
 - Disable the widget service & hide the icon from the taskbar.
 - Hide the Chat (meet now) icon from the taskbar.
 

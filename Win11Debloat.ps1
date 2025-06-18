@@ -30,10 +30,14 @@ param (
     [switch]$ShowHiddenFolders,
     [switch]$ShowKnownFileExt,
     [switch]$HideDupliDrive,
+    [switch]$EnableDarkMode,
+    [switch]$DisableTransparency,
+    [switch]$DisableAnimations,
     [switch]$TaskbarAlignLeft,
     [switch]$HideSearchTb, [switch]$ShowSearchIconTb, [switch]$ShowSearchLabelTb, [switch]$ShowSearchBoxTb,
     [switch]$HideTaskview,
     [switch]$DisableStartRecommended,
+    [switch]$DisableStartPhoneLink,
     [switch]$DisableCopilot,
     [switch]$DisableRecall,
     [switch]$DisableWidgets, [switch]$HideWidgets,
@@ -580,6 +584,10 @@ function RestartExplorer {
         Write-Host "Warning: The Sticky Keys setting changes will only take effect after a reboot" -ForegroundColor Yellow
     }
 
+    if ($script:Params.ContainsKey("DisableAnimations")) {
+        Write-Host "Warning: Animations will only be disabled after a reboot" -ForegroundColor Yellow
+    }
+
     # Only restart if the powershell process matches the OS architecture.
     # Restarting explorer from a 32bit PowerShell window will fail on a 64bit OS
     if ([Environment]::Is64BitProcess -eq [Environment]::Is64BitOperatingSystem) {
@@ -820,8 +828,8 @@ function DisplayCustomModeOptions {
         Write-Host " (n) Don't remove any apps" -ForegroundColor Yellow
         Write-Host " (1) Only remove the default selection of bloatware apps from 'Appslist.txt'" -ForegroundColor Yellow
         Write-Host " (2) Remove default selection of bloatware apps, as well as mail & calendar apps, developer apps and gaming apps"  -ForegroundColor Yellow
-        Write-Host " (3) Manually select which apps to remove and which to keep" -ForegroundColor Yellow
-        $RemoveAppsInput = Read-Host "Do you want to remove any apps? (n/1/2/3)"
+        Write-Host " (3) Manually select which apps to remove" -ForegroundColor Yellow
+        $RemoveAppsInput = Read-Host "Do you want to remove any apps? Apps will be removed for all users (n/1/2/3)"
 
         # Show app selection form if user entered option 3
         if ($RemoveAppsInput -eq '3') {
@@ -900,6 +908,19 @@ function DisplayCustomModeOptions {
 
     if ($( Read-Host -Prompt "Disable Windows Spotlight background on desktop? (y/n)" ) -eq 'y') {
         AddParameter 'DisableDesktopSpotlight' 'Disable the Windows Spotlight desktop background option.'
+    }
+
+    Write-Output ""
+
+    if ($( Read-Host -Prompt "Enable dark mode for system and apps? (y/n)" ) -eq 'y') {
+        AddParameter 'EnableDarkMode' 'Enable dark mode for system and apps'
+    }
+
+    Write-Output ""
+
+    if ($( Read-Host -Prompt "Disable transparency, animations and visual effects? (y/n)" ) -eq 'y') {
+        AddParameter 'DisableTransparency' 'Disable transparency effects'
+        AddParameter 'DisableAnimations' 'Disable animations and visual effects'
     }
 
     # Only show this option for Windows 11 users running build 22000 or later
@@ -994,6 +1015,12 @@ function DisplayCustomModeOptions {
 
             if ($( Read-Host -Prompt "   Disable & hide the recommended section in the start menu? This applies to all users (y/n)" ) -eq 'y') {
                 AddParameter 'DisableStartRecommended' 'Disable & hide the recommended section in the start menu.'
+            }
+
+            Write-Output ""
+
+            if ($( Read-Host -Prompt "   Disable the Phone Link mobile devices integration in the start menu? (y/n)" ) -eq 'y') {
+                AddParameter 'DisableStartPhoneLink' 'Disable the Phone Link mobile devices integration in the start menu.'
             }
         }
     }
@@ -1518,16 +1545,16 @@ switch ($script:Params.Keys) {
         RegImport "> Disabling tips, tricks, suggestions and ads across Windows..." "Disable_Windows_Suggestions.reg"
         continue
     }
-    'DisableSettings365Ads' {
-        RegImport "> Disabling Microsoft 365 ads in Settings Home..." "Disable_Settings_365_Ads.reg"
-        continue
-    }
     {$_ -in "DisableLockscrTips", "DisableLockscreenTips"} {
         RegImport "> Disabling tips & tricks on the lockscreen..." "Disable_Lockscreen_Tips.reg"
         continue
     }
     'DisableDesktopSpotlight' {
         RegImport "> Disabling the 'Windows Spotlight' desktop background option..." "Disable_Desktop_Spotlight.reg"
+        continue
+    }
+    'DisableSettings365Ads' {
+        RegImport "> Disabling Microsoft 365 ads in Settings Home..." "Disable_Settings_365_Ads.reg"
         continue
     }
     'DisableSettingsHome' {
@@ -1592,6 +1619,22 @@ switch ($script:Params.Keys) {
     }
     'DisableStartRecommended' {
         RegImport "> Disabling and hiding the start menu recommended section..." "Disable_Start_Recommended.reg"
+        continue
+    }
+    'DisableStartPhoneLink' {
+        RegImport "> Disabling the Phone Link mobile devices integration in the start menu..." "Disable_Phone_Link_In_Start.reg"
+        continue
+    }
+    'EnableDarkMode' {
+        RegImport "> Enabling dark mode for system and apps..." "Enable_Dark_Mode.reg"
+        continue
+    }
+    'DisableTransparency' {
+        RegImport "> Disabling transparency effects..." "Disable_Transparency.reg"
+        continue
+    }
+    'DisableAnimations' {
+        RegImport "> Disabling animations and visual effects..." "Disable_Animations.reg"
         continue
     }
     'TaskbarAlignLeft' {

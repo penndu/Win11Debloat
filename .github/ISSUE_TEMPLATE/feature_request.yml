@@ -1,4 +1,4 @@
-name: "Feature request"
+name: "💡 Feature request"
 description: "Suggest a new feature or improvement"
 labels: ["enhancement"]
 
@@ -6,41 +6,33 @@ body:
   - type: markdown
     attributes:
       value: |
-        # **Feature request**
-        Thanks for taking the time to suggest a feature! Please include as much detail as possible in your request to help us understand and evaluate it.
+        # 💡 **Feature request**
+        Thanks for taking the time to suggest a feature for Win11Debloat! Please include as much detail as possible to help us understand and evaluate your suggestion.
 
   - type: checkboxes
     id: checklist
     attributes:
       label: Checklist
+      description: Please confirm the following before posting your issue.
       options:
-        - label: I searched for existing issues/discussions and didn't find any similar ones.
+        - label: I have searched for existing issues/discussions and didn't find any similar ones.
           required: true
 
   - type: textarea
-    id: problem
+    id: description
     attributes:
-      label: Problem description
-      description: A clear and concise description of what the problem is.
-      placeholder: e.g. I'm always frustrated when [...]
+      label: Describe the feature or improvement
+      description: Provide a clear and concise description of your suggested feature or improvement. Explain why you think this feature is needed and how it would benefit users.
+      placeholder: Describe the feature or improvement.
     validations:
       required: true
 
   - type: textarea
-    id: solution
+    id: examples
     attributes:
-      label: Proposed solution
-      description: A clear and concise description of what you want to happen.
-      placeholder: e.g. I would like to see [...]
-    validations:
-      required: true
-
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternatives considered
-      description: A clear and concise description of any alternative solutions or features you've considered.
-      placeholder: e.g. I tried [...] but it didn't work because [...]
+      label: Examples
+      description: Provide examples of how the feature could work or be implemented.
+      placeholder: e.g. Code snippets, mockups, or links to other implementations of similar features.
     validations:
       required: false
 

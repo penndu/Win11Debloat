@@ -62,10 +62,6 @@
             "Value": true
         },
         {
-            "Name": "DisableFastStartup",
-            "Value": true
-        },
-        {
             "Name": "Hide3dObjects",
             "Value": true
         },

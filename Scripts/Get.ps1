@@ -190,7 +190,7 @@ $arguments = $($PSBoundParameters.GetEnumerator() | ForEach-Object {
 })
 
 Write-Output ""
-Write-Output "> Running Win11Debloat..."
+Write-Output "> Launching Win11Debloat..."
 
 # Minimize the powershell window when no parameters are provided
 if ($arguments.Count -eq 0) {

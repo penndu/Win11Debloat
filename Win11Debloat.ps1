@@ -1,5 +1,3 @@
-#Requires -RunAsAdministrator
-
 [CmdletBinding(SupportsShouldProcess)]
 param (
     [switch]$CLI,
@@ -105,7 +103,42 @@ param (
     [switch]$HideDriveLetters
 )
 
+# Check if script is running as administrator
+$isAdmin = ([Security.Principal.WindowsPrincipal] `
+    [Security.Principal.WindowsIdentity]::GetCurrent()
+).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 
+# If script is not running as administrator ask user if they want to allow it
+if (-not $isAdmin) {
+    Write-Host "Win11Debloat must be run as Administrator." -ForegroundColor Red
+
+    $choice = Read-Host "Restart as Administrator? (y/n)"
+
+    if ($choice -match '^[Yy]$') {
+        $elevatedArgs = @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $PSCommandPath)
+
+        foreach ($paramName in $PSBoundParameters.Keys) {
+            $paramValue = $PSBoundParameters[$paramName]
+
+            if ($paramValue -is [System.Management.Automation.SwitchParameter]) {
+                if ($paramValue.IsPresent) {
+                    $elevatedArgs += "-$paramName"
+                }
+            }
+            else {
+                $elevatedArgs += "-$paramName"
+                $elevatedArgs += "$paramValue"
+            }
+        }
+
+        if ($MyInvocation.UnboundArguments.Count -gt 0) {
+            $elevatedArgs += $MyInvocation.UnboundArguments
+        }
+
+        Start-Process powershell -ArgumentList $elevatedArgs -Verb RunAs
+    }
+    exit
+}
 
 # Define script-level variables & paths
 $script:Version = "2026.04.05"

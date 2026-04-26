@@ -249,7 +249,7 @@ function Get-DeploymentCategoryDetailString {
     if ($lookup.ContainsKey('UserSelectionIndex')) {
         switch ([int]$lookup['UserSelectionIndex']) {
             0 { $line1 += 'User: Current User' }
-            1 { if ($lookup['OtherUsername']) { $line1 += "User: $($lookup['OtherUsername'])" } }
+            1 { $line1 += "User: $(if ($lookup['OtherUsername']) { $lookup['OtherUsername'] } else { 'Other User' })" }
             2 { $line1 += 'User: Sysprep' }
         }
     }
@@ -258,7 +258,7 @@ function Get-DeploymentCategoryDetailString {
         switch ([int]$lookup['AppRemovalScopeIndex']) {
             0 { $line1 += 'App Removal: All Users' }
             1 { $line1 += 'App Removal: Current User' }
-            2 { if ($lookup['OtherUsername']) { $line1 += "App Removal: $($lookup['OtherUsername'])" } }
+            2 { $line1 += "App Removal: $(if ($lookup['OtherUsername']) { $lookup['OtherUsername'] } else { 'Other User' })" }
         }
     }
 

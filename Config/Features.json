@@ -59,15 +59,9 @@
       "Priority": 2,
       "Values": [
         {
-          "Label": "Hide",
+          "Label": "Show search box (Default)",
           "FeatureIds": [
-            "HideSearchTb"
-          ]
-        },
-        {
-          "Label": "Show search icon only",
-          "FeatureIds": [
-            "ShowSearchIconTb"
+            "ShowSearchBoxTb"
           ]
         },
         {
@@ -77,9 +71,15 @@
           ]
         },
         {
-          "Label": "Show search box",
+          "Label": "Show search icon only",
           "FeatureIds": [
-            "ShowSearchBoxTb"
+            "ShowSearchIconTb"
+          ]
+        },
+        {
+          "Label": "Hide",
+          "FeatureIds": [
+            "HideSearchTb"
           ]
         }
       ]
@@ -91,7 +91,7 @@
       "Category": "Taskbar",
       "Values": [
         {
-          "Label": "All taskbars",
+          "Label": "All taskbars (Default)",
           "FeatureIds": [
             "MMTaskbarModeAll"
           ]
@@ -117,7 +117,7 @@
       "Category": "Taskbar",
       "Values": [
         {
-          "Label": "Always",
+          "Label": "Always (Default)",
           "FeatureIds": [
             "CombineTaskbarAlways"
           ]
@@ -143,7 +143,7 @@
       "Category": "Taskbar",
       "Values": [
         {
-          "Label": "Always",
+          "Label": "Always (Default)",
           "FeatureIds": [
             "CombineMMTaskbarAlways"
           ]
@@ -190,7 +190,7 @@
       "Priority": 1,
       "Values": [
         {
-          "Label": "Home",
+          "Label": "Home (Default)",
           "FeatureIds": [
             "ExplorerToHome"
           ]
@@ -262,7 +262,7 @@
           ]
         },
         {
-          "Label": "Show 3 most recent tabs",
+          "Label": "Show 3 most recent tabs (Default)",
           "FeatureIds": [
             "Show3TabsInAltTab"
           ]

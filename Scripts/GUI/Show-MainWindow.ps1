@@ -504,6 +504,19 @@ function Show-MainWindow {
             }
         }
         $appSelectionStatus.Text = "$selectedCount app(s) selected for removal"
+
+        if ($appRemovalScopeCombo -and $appRemovalScopeSection -and $appRemovalScopeDescription) {
+            if ($selectedCount -gt 0) {
+                if ($userSelectionCombo.SelectedIndex -ne 2) {
+                    $appRemovalScopeCombo.IsEnabled = $true
+                }
+                UpdateAppRemovalScopeDescription
+            }
+            else {
+                $appRemovalScopeCombo.IsEnabled = $false
+                $appRemovalScopeDescription.Text = "No apps selected for removal."
+            }
+        }
     }
 
     # Applies a preset by checking/unchecking apps that match the given filter
@@ -1563,21 +1576,7 @@ function Show-MainWindow {
             $changesList += "Remove $selectedAppsCount application(s)"
         }
         
-        # Update app removal scope section based on whether apps are selected
-        if ($selectedAppsCount -gt 0) {
-            # Enable app removal scope selection (unless locked by sysprep mode)
-            if ($userSelectionCombo.SelectedIndex -ne 2) {
-                $appRemovalScopeCombo.IsEnabled = $true
-            }
-            $appRemovalScopeSection.Opacity = 1.0
-            UpdateAppRemovalScopeDescription
-        }
-        else {
-            # Disable app removal scope selection when no apps selected
-            $appRemovalScopeCombo.IsEnabled = $false
-            $appRemovalScopeSection.Opacity = 0.5
-            $appRemovalScopeDescription.Text = "No apps selected for removal."
-        }
+        UpdateAppSelectionStatus
         
         # Collect all ComboBox/CheckBox selections from dynamically created controls
         if ($script:UiControlMappings) {
